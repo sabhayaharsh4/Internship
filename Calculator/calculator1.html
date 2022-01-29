@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Calculator</h2>
+      <p>
+        The below Calculator contains three inputs; two of type number and one
+        of type selecter:
+      </p>
+      <form>
+        <div class="form-group">
+          <label for="num1">Value 1:</label>
+          <input type="number" class="form-control" id="num1" />
+        </div>
+        <div class="form-group">
+          <label for="num2">Value 2:</label>
+          <input type="number" class="form-control" id="num2" />
+        </div>
+        <div class="form-group">
+          <label for="operator">Select Operator</label>
+          <select id="operator" class="form-control">
+            <option>Select Operator</option>
+            <option>+</option>
+            <option>-</option>
+            <option>*</option>
+            <option>/</option>
+            <option>%</option></select
+          ><br />
+          <div class="form-group">
+            <label id="show" for="answer" style="display: none">Answer</label>
+            <div
+              id="answer"
+              class="form-control"
+              aria-readonly="true"
+              style="display: none"
+            ></div>
+          </div>
+
+          <button
+            class="btn btn-outline-primary"
+            type="button"
+            onclick="answer()"
+            style="width: 75px"
+          >
+            Answer
+          </button>
+          <button class="btn btn-outline-primary mx-2" style="width: 75px">
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script>
+    function answer() {
+      let x = document.getElementById("num1").value;
+
+      let y = document.getElementById("num2").value;
+
+      let z = document.getElementById("operator").value;
+
+      if (x.length == 0 && y.length == 0 && z == "Select Operator") {
+        document.getElementById("answer").innerHTML =
+          "Enter Both Value And Select Operator";
+        document.getElementById("show").style = "display:inline-block";
+        document.getElementById("answer").style = "display:inline-block";
+      } else if (x.length !== 0 && y.length == 0 && z == "Select Operator") {
+        document.getElementById("answer").innerHTML =
+          "Enter Value2 And Select Operator";
+        document.getElementById("show").style = "display:inline-block";
+        document.getElementById("answer").style = "display:inline-block";
+      } else if (x.length == 0 && y.length !== 0 && z == "Select Operator") {
+        document.getElementById("answer").innerHTML =
+          "Enter Value1 And Select Operator";
+        document.getElementById("show").style = "display:inline-block";
+        document.getElementById("answer").style = "display:inline-block";
+      } else if (x.length !== 0 && y.length !== 0 && z == "Select Operator") {
+        document.getElementById("answer").innerHTML = " Select Operator";
+        document.getElementById("show").style = "display:inline-block";
+        document.getElementById("answer").style = "display:inline-block";
+      } else if (
+        (x.length == 0 && y.length == 0 && z == "+") ||
+        (x.length == 0 && y.length == 0 && z == "-") ||
+        (x.length == 0 && y.length == 0 && z == "*") ||
+        (x.length == 0 && y.length == 0 && z == "/") ||
+        (x.length == 0 && y.length == 0 && z == "%")
+      ) {
+        document.getElementById("answer").innerHTML = "Enter Both Value";
+        document.getElementById("show").style = "display:inline-block";
+        document.getElementById("answer").style = "display:inline-block";
+      } else if (
+        (x.length !== 0 && y.length == 0 && z == "+") ||
+        (x.length !== 0 && y.length == 0 && z == "-") ||
+        (x.length !== 0 && y.length == 0 && z == "*") ||
+        (x.length !== 0 && y.length == 0 && z == "/") ||
+        (x.length !== 0 && y.length == 0 && z == "%")
+      ) {
+        document.getElementById("answer").innerHTML = "Enter Value2";
+        document.getElementById("show").style = "display:inline-block";
+        document.getElementById("answer").style = "display:inline-block";
+      } else if (
+        (x.length == 0 && y.length !== 0 && z == "+") ||
+        (x.length == 0 && y.length !== 0 && z == "-") ||
+        (x.length == 0 && y.length !== 0 && z == "*") ||
+        (x.length == 0 && y.length !== 0 && z == "/") ||
+        (x.length == 0 && y.length !== 0 && z == "%")
+      ) {
+        document.getElementById("answer").innerHTML = "Enter Value1";
+        document.getElementById("show").style = "display:inline-block";
+        document.getElementById("answer").style = "display:inline-block";
+      } else if (
+        (x == 0 && y == 0 && z == "/") ||
+        (x == 0 && y == 0 && z == "%")
+      ) {
+        document.getElementById("answer").innerHTML = "Math Error";
+        document.getElementById("show").style = "display:inline-block";
+        document.getElementById("answer").style = "display:inline-block";
+      } else if (
+        (x.length !== 0 && y == 0 && z == "/") ||
+        (x.length !== 0 && y == 0 && z == "%")
+      ) {
+        document.getElementById("answer").innerHTML = "Math Error";
+        document.getElementById("show").style = "display:inline-block";
+        document.getElementById("answer").style = "display:inline-block";
+      } else {
+        switch (z) {
+          case "+":
+            document.getElementById("answer").innerHTML = Number(x) + Number(y);
+            document.getElementById("show").style = "display:inline-block";
+            document.getElementById("answer").style = "display:inline-block";
+            break;
+          case "-":
+            document.getElementById("answer").innerHTML = x - y;
+            document.getElementById("show").style = "display:inline-block";
+            document.getElementById("answer").style = "display:inline-block";
+            break;
+          case "*":
+            document.getElementById("answer").innerHTML = x * y;
+            document.getElementById("show").style = "display:inline-block";
+            document.getElementById("answer").style = "display:inline-block";
+            break;
+          case "/":
+            document.getElementById("answer").innerHTML = x / y;
+            document.getElementById("show").style = "display:inline-block";
+            document.getElementById("answer").style = "display:inline-block";
+            break;
+          case "%":
+            document.getElementById("answer").innerHTML = x % y;
+            document.getElementById("show").style = "display:inline-block";
+            document.getElementById("answer").style = "display:inline-block";
+            break;
+        }
+      }
+    }
+  </script>
+</html>
